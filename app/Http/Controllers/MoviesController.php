@@ -18,10 +18,12 @@ class MoviesController extends Controller {
         $this->movies = $movies;
     }
 
-    function show()
+    /**
+     * returns list of popular movies
+     * @return Tmdb\Model\Collection\ResultCollection with Tmdb\Model\Movie
+     */
+    function getPopular()
     {
-        // returns information of a movie
         $movies = $this->movies->getPopular();
-        var_dump($movies);
     }
 }

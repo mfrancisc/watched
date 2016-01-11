@@ -12,8 +12,8 @@
 */
 
 
-Route::get('/movies', 'MoviesController@show');
-Route::get('/tv', 'TvController@show');
+Route::get('/movies/popular', 'MoviesController@getPopular');
+Route::get('/tv/popular', 'TvController@getPopular');
 
 /*
 |--------------------------------------------------------------------------

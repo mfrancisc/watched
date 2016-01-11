@@ -9,20 +9,19 @@ use App\Http\Controllers\Controller;
 
 use Tmdb\Repository\TvRepository;
 
-class TvController extends Controller
-{
-  private $tvRepository;
+class TvController extends Controller {
 
-  public function __constructor(TvRepository $tvRepository)
+  private $tv;
+
+  function __construct(TvRepository $tv)
   {
-    $this->tvRepository = $tvRepository;
-
+    $this->tv = $tv; 
   }
 
-  public function show()
+
+  public function getPopular()
   {
-    $result = $this->tvRepository->getPopular();
+    $result = $this->tv->getPopular();
     var_dump($result); 
   }
-  //
 }
