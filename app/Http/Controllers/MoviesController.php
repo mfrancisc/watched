@@ -2,28 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Tmdb;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use Tmdb\Repository\MovieRepository;
 
 class MoviesController extends Controller {
 
     private $movies;
-
-    function __construct(MovieRepository $movies)
-    {
-        $this->movies = $movies;
-    }
+    private $helper;
 
     /**
      * returns list of popular movies
-     * @return Tmdb\Model\Collection\ResultCollection with Tmdb\Model\Movie
+     * @return json 
      */
     function getPopular()
     {
-        $movies = $this->movies->getPopular();
+      return Tmdb::getMoviesApi()->getPopular();
     }
 }

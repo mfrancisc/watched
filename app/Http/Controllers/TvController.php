@@ -2,26 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Tmdb;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Tmdb\Repository\TvRepository;
-
 class TvController extends Controller {
 
-  private $tv;
-
-  function __construct(TvRepository $tv)
-  {
-    $this->tv = $tv; 
-  }
-
-
+  /**
+   * returns list of popular tv show
+   * @return  json 
+   */
   public function getPopular()
   {
-    $result = $this->tv->getPopular();
-    var_dump($result); 
+      return Tmdb::getTvApi()->getPopular();
   }
 }
