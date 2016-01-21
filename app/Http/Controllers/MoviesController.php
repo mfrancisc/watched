@@ -9,9 +9,6 @@ use App\Http\Controllers\Controller;
 
 class MoviesController extends Controller {
 
-    private $movies;
-    private $helper;
-
     /**
      * returns list of popular movies
      * @return json 
