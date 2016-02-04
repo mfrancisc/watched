@@ -14,6 +14,7 @@
 
 Route::get('/movies/popular', 'MoviesController@getPopular');
 Route::get('/tv/popular', 'TvController@getPopular');
+Route::get('/tv/search/{query}', 'TvController@search');
 /*
 |--------------------------------------------------------------------------
 | Application Routes

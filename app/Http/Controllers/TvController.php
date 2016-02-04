@@ -4,24 +4,33 @@ namespace App\Http\Controllers;
 
 use Cache;
 use Tmdb;
-use App\Http\Requests;
 use Tmdb\Helper\ImageHelper;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class TvController extends Controller {
 
   private $helper;
 
-  public function __construct( ImageHelper $helper)
+  public function __construct(ImageHelper $helper)
   {
     $this->helper = $helper;
   }
 
   /**
-   * returns list of popular tv shows
-   * @return json
+   * Search for list by name
    *
+   * @param  string $query
+   * @return json
+   */
+  public function search($query)
+  {
+    return Tmdb::getSearchApi()->searchTv($query);
+  }
+
+  /**
+   * Returns list of popular tv shows
+   *
+   * @return json
    */
   public function getPopular()
   {
@@ -32,13 +41,14 @@ class TvController extends Controller {
   }
 
   /**
-   * gets data from source 
+   * Gets data from source 
+   *
    * @return json
    */
   private function getPopularFromSource()
   {
     $populars = Tmdb::getTvApi()->getPopular();
-
+  
     $popularsWithUrls = $this->getPosterUrls($populars);
 
     return $popularsWithUrls;
@@ -46,8 +56,10 @@ class TvController extends Controller {
   }
 
   /**
-   *  Adding complete url to poster images
-   *  @return json
+   * Adding complete url to poster images
+   *
+   * @param  $populars
+   * @return json
    */
   private function getPosterUrls($populars)
   {
